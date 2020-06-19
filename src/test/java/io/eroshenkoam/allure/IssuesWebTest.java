@@ -1,6 +1,7 @@
 package io.eroshenkoam.allure;
 
 import io.qameta.allure.Feature;
+import io.qameta.allure.Issue;
 import io.qameta.allure.Owner;
 import io.qameta.allure.Story;
 import org.junit.jupiter.api.AfterEach;
@@ -33,6 +34,7 @@ public class IssuesWebTest {
 
     @Test
     @Story("Create new issue")
+    @Issue("AE-1")
     @JiraIssues({@JiraIssue("AE-2")})
     @Tags({@Tag("web"), @Tag("critical")})
     @DisplayName("Create new issue authorized user")
