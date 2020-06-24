@@ -3,6 +3,7 @@ package io.eroshenkoam.allure;
 import io.qameta.allure.Feature;
 import io.qameta.allure.Owner;
 import io.qameta.allure.Story;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Tags;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -24,12 +25,24 @@ public class IssuesRestTest {
     @Story("Create new issue")
     @Tags({@Tag("api"), @Tag("smoke")})
     @ParameterizedTest(name = "Create issue via api")
-    @ValueSource(strings = {"First Note", "Second Note"})
+    @ValueSource(strings = {
+            "passed 1",
+            "passed 2",
+            "passed 3",
+            "passed 4",
+            "passed 5",
+            "failed 1",
+            "failed 2",
+            "failed 3",
+            "failed 4",
+            "failed 5",
+    })
     public void shouldCreateUserNote(String title) {
         parameter("owner", OWNER);
         parameter("repo", REPO);
         parameter("title", title);
 
+        Assertions.assertTrue(title.startsWith("passed"));
         steps.createIssueWithTitle(OWNER, REPO, title);
         steps.shouldSeeIssueWithTitle(OWNER, REPO, title);
     }
