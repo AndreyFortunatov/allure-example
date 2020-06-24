@@ -3,11 +3,13 @@ package io.eroshenkoam.allure;
 import io.qameta.allure.Step;
 
 import static io.qameta.allure.Allure.step;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class RestSteps {
 
     @Step("Create issue with title `{title}`")
     public void createIssueWithTitle(final String owner, final String repo, final String title) {
+        assertEquals(title, "First Note");
         step(String.format("POST /repos/%s/%s/issues", owner, repo));
     }
 
